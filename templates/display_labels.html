@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Tweet | Greenweb
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-success py-3">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="" alt="" width="30" height="24" class="d-inline-block align-top">
+            GreenWeb
+        </a>
+        </div>
+    </nav>
+      
+    <div class="card w-75 mx-auto bg-light my-3">
+        <div class="card-header">
+          Welcome to GreenWeb!
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Get Started</h5>
+            <p class="card-text">Choose an social medium below to authenticate with and get started offsetting your carbon footprint!</p>
+        </div>
+    </div>
+
+<p>{{ labels }}</p>
+
+<table class="table table-striped table-hover mx-auto my-3 w-50">
+    <thead>
+        <tr>
+            <th scope="col"><b>Label</b></th>
+            <th scope="col"><b>Score</b></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for label in labels %}
+        <tr>
+            <th scope="row">{{ label.description }}</th>
+            {% if label.description==classification %}
+            <td class="table-success">{{ label.score }}</td>
+            {% else %}
+            <td>{{ label.score }}</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="input-group my-3 mx-auto w-50 pb-3">
+    <span class="input-group-text" id="basic-addon1">Scored as:</span>
+    <input type="text" class="form-control" placeholder= "{{ classification }}" aria-label="footprint" aria-describedby="basic-addon1" disabled>
+    <span class="input-group-text" id="basic-addon1">for</span>
+    <input type="text" class="form-control" placeholder= "{{ score }}" aria-label="footprint" aria-describedby="basic-addon1" disabled>
+    <span class="input-group-text">kg</span>
+</div>
+
+<a href="/dashboard">DASHBOARD</a>
+
+</body>
